@@ -37,3 +37,5 @@ Postgres psql commands.
 ```\!``` - clear screen
 
 ```\d <TABLE_NAME>``` - Describe table
+
+```\dt``` - Show tables 
