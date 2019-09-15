@@ -25,6 +25,11 @@ delete from author where id='57';
 
 ## PSQL Commands
 
+### Restoring database
+Restaurar base de datos desde archivo plano
+
+```psql -U db_name < backup.sql``` 
+
 ### Getting psql help
 You access psql command line with ```psql``` or ```psql -U <username>```.
 
