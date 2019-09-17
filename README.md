@@ -41,6 +41,23 @@ ALTER TABLE table_name DROP CONSTRAINT nombre_foreign_key_fkey
 ALTER TABLE table_name ADD FOREIGN KEY(field) REFERENCES table_name_2(field)
 ```
 
+### Lets Copy a Table !
+With data:
+```sql
+CREATE TABLE new_table AS
+TABLE existing_table;
+```
+With no data:
+```sql
+CREATE TABLE new_table
+AS TABLE existing_table WITH NO DATA;
+```
+With some of the data:
+```sql
+CREATE TABLE new_table AS 
+SELECT * FROM existing_table WHERE condition;
+```
+
 ## PSQL Commands
 
 ### Getting psql help
@@ -72,13 +89,14 @@ pg_dump -U $dbuser $dbname -W -F p -f ${timestamp}_${dbname}.sql
 
 Lets understand the options:
 
-- -U db_username: User to connect to PostgreSQL database server.
+- -U db_username: (--username) User to connect to PostgreSQL database server.
 - -W:  forces pg_dump to prompt for the password before connecting to server. 
-- -F : Specifies the output file format that can be one of the following:
-  - c: custom-format archive file format
-  - d: directory-format archive
-  - t:tar
-  - p: plain text SQL script file).
+- --format : Specifies the output file format that can be one of the following:
+  - --format=c: custom-format archive file format
+  - --format=d: directory-format archive
+  - --format=t:tar
+  - --format=p: plain text SQL script file).
+- -f: (--file) The file where to save the backup
 
 ### Restoring database
 Restore database from plaintext file...
