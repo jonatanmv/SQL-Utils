@@ -57,6 +57,8 @@ Postgres psql commands.
 
 ```\dt``` - Show tables 
 
+```\list``` - List databases
+
 ### Backing up database
 
 Sample command: ```console >pg_dump -U db_username -W -F t database_name > c:\backup_file.tar ```
