@@ -43,11 +43,6 @@ ALTER TABLE table_name ADD FOREIGN KEY(field) REFERENCES table_name_2(field)
 
 ## PSQL Commands
 
-### Restoring database
-Restaurar base de datos desde archivo plano
-
-```psql -U db_name < backup.sql``` 
-
 ### Getting psql help
 You access psql command line with ```psql``` or ```psql -U <username>```.
 
@@ -56,9 +51,34 @@ Then you can get help with the command ```help```
 ### psql commands cheet sheet !
 Postgres psql commands.
 
-
 ```\!``` - clear screen
 
 ```\d <TABLE_NAME>``` - Describe table
 
 ```\dt``` - Show tables 
+
+### Backing up database
+
+Sample command: ```console >pg_dump -U db_username -W -F t database_name > c:\backup_file.tar ```
+
+Other sample:
+
+```console
+timestamp=$(date +%Y%m%d)
+pg_dump -U $dbuser $dbname -W -F p -f ${timestamp}_${dbname}.sql
+```
+
+Lets understand the options:
+
+- -U db_username: User to connect to PostgreSQL database server.
+- -W:  forces pg_dump to prompt for the password before connecting to server. 
+- -F : Specifies the output file format that can be one of the following:
+  - c: custom-format archive file format
+  - d: directory-format archive
+  - t:tar
+  - p: plain text SQL script file).
+
+### Restoring database
+Restore database from plaintext file...
+
+```psql -U db_name < backup.sql``` 
