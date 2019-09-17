@@ -22,6 +22,24 @@ update author set name='Franklin' where id=861;
 ```sql
 delete from author where id='57';
 ```
+### Lets ALTER TABLE !
+- Editing table structure
+```sql
+ALTER TABLE table_name ADD COLUMN field BOOLEAN DEFAULT true
+ALTER TABLE table_name ALTER COLUMN field DROP NOT NULL
+ALTER TABLE table_name ALTER COLUMN field SET NOT NULL
+ALTER TABLE table_name ALTER COLUMN field TYPE smallint
+ALTER TABLE table_name ALTER COLUMN field DROP default
+ALTER TABLE table_name ALTER COLUMN field SET DEFAULT 10
+ALTER TABLE table_name DROP COLUMN field
+ALTER TABLE table_name RENAME COLUMN nombre_actual TO nombre_nuevo
+```
+
+- Working with Foreign keys
+```sql
+ALTER TABLE table_name DROP CONSTRAINT nombre_foreign_key_fkey
+ALTER TABLE table_name ADD FOREIGN KEY(field) REFERENCES table_name_2(field)
+```
 
 ## PSQL Commands
 
