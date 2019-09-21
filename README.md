@@ -33,6 +33,7 @@ ALTER TABLE table_name ALTER COLUMN field DROP default
 ALTER TABLE table_name ALTER COLUMN field SET DEFAULT 10
 ALTER TABLE table_name DROP COLUMN field
 ALTER TABLE table_name RENAME COLUMN old_name TO new_name
+ALTER TABLE table_name DROP CONSTRAINT constraint_name
 ```
 
 - Working with Foreign keys
