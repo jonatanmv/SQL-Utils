@@ -61,6 +61,16 @@ SELECT * FROM existing_table WHERE condition;
 
 ## PSQL Commands
 
+### Database size on disk
+Easy ! just do this:
+
+```console
+select datname AS db_name,
+       pg_size_pretty(pg_database_size(datname)) as db_size
+from pg_database 
+order by pg_database_size(datname) desc;
+```
+
 ### Getting psql help
 You access psql command line with ```psql``` or ```psql -U <username>```.
 
