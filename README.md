@@ -61,7 +61,7 @@ SELECT * FROM existing_table WHERE condition;
 
 ## PSQL Commands
 
-### Database size on disk
+### Databases size on disk
 Easy ! just do this:
 
 ```console
@@ -70,6 +70,23 @@ select datname AS db_name,
 from pg_database 
 order by pg_database_size(datname) desc;
 ```
+### Tables disk usage
+```console
+SELECT 
+       relname AS "table_name", 
+       pg_size_pretty(pg_table_size(C.oid)) AS "table_size" 
+FROM 
+       pg_class C 
+LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace) 
+WHERE nspname NOT IN ('pg_catalog', 'information_schema') AND nspname !~ '^pg_toast' AND relkind IN ('r') 
+ORDER BY pg_table_size(C.oid) 
+DESC LIMIT 1;
+```
+
+### Death rows
+```console
+select relname, n_dead_tup from pg_stat_user_tables;
+
 
 ### Getting psql help
 You access psql command line with ```psql``` or ```psql -U <username>```.
