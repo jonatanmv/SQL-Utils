@@ -64,14 +64,14 @@ SELECT * FROM existing_table WHERE condition;
 ### Databases size on disk
 Easy ! just do this:
 
-```console
+```sql
 select datname AS db_name,
        pg_size_pretty(pg_database_size(datname)) as db_size
 from pg_database 
 order by pg_database_size(datname) desc;
 ```
 ### Tables disk usage
-```console
+```sql
 SELECT 
        relname AS "table_name", 
        pg_size_pretty(pg_table_size(C.oid)) AS "table_size" 
@@ -84,12 +84,22 @@ DESC LIMIT 1;
 ```
 
 ### Death rows
-```console
+```sql
 select relname, n_dead_tup from pg_stat_user_tables;
 ```
 
-### Last Vacuum
-```console
+### Vacuum
+
+Check Autovacuum is on and other settings:
+
+```sql
+SELECT name, setting FROM pg_settings WHERE name='autovacuum';
+SELECT * from pg_settings where category like 'Autovacuum';
+```
+
+Last time (auto)vacuum ran:
+
+```sql
 SELECT relname, last_vacuum, last_autovacuum FROM pg_stat_user_tables;
 ```
 
