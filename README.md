@@ -86,7 +86,12 @@ DESC LIMIT 1;
 ### Death rows
 ```console
 select relname, n_dead_tup from pg_stat_user_tables;
+```
 
+### Last Vacuum
+```console
+SELECT relname, last_vacuum, last_autovacuum FROM pg_stat_user_tables;
+```
 
 ### Getting psql help
 You access psql command line with ```psql``` or ```psql -U <username>```.
